@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<indexing>
+ <paragraph index="9" node_type="writer">Rapport Projet INFO 7</paragraph>
+ <paragraph index="10" node_type="writer">Nom de l'étudiant : Mahamat Alhafiz
+Prénom de l'étudiant : Kerim Andoulaye
+Nom de l'étudiant 2 :mhammed Lalou</paragraph>
+ <paragraph index="12" node_type="writer">Encadrant :M. Jean Fromentin</paragraph>
+ <paragraph index="13" node_type="writer">Année universitaire :2024–2025</paragraph>
+ <paragraph index="38" node_type="writer">           Introduction</paragraph>
+ <paragraph index="39" node_type="writer">Jeu : Snake - Trié</paragraph>
+ <paragraph index="40" node_type="writer">Le projet est divisé en 4 séances, et ce rapport détaille le rendu de la dernière séance, qui correspond à la phase finale du jeu.</paragraph>
+ <paragraph index="41" node_type="writer">Les fichiers du projet sont organisés comme suit :</paragraph>
+ <paragraph index="42" node_type="writer">snake.cpp et snake.hpp : Ces fichiers sont spécifiquement dédiés à la gestion du serpent dans le jeu. Ils contiennent les fonctions pour la création, le déplacement, et l'évolution du serpent.</paragraph>
+ <paragraph index="43" node_type="writer">gestionEvent.cpp et gestionEvent.hpp : Ces fichiers sont utilisés pour la gestion des événements du jeu, comme la détection des entrées clavier (par exemple, pour les déplacements du serpent).</paragraph>
+ <paragraph index="44" node_type="writer">window.cpp et window.hpp : Ces fichiers sont responsables de l'affichage de la fenêtre du jeu. Ils gèrent la création de la fenêtre, l'affichage du jeu et l'interface utilisateur.</paragraph>
+ <paragraph index="45" node_type="writer">world.cpp et world.hpp : Ces fichiers sont utilisés pour l'initialisation du monde du jeu, y compris la gestion de la nourriture et des obstacles dans le jeu.</paragraph>
+ <paragraph index="46" node_type="writer">enum.hpp : Ce fichier contient l'énumération des différents types de nourriture dans le jeu, tels que la nourriture verte, rouge, bleue et étoilée.</paragraph>
+ <paragraph index="47" node_type="writer">view.cpp et view.hpp : Ces fichiers gèrent l'affichage du serpent et du monde, en utilisant les images correspondantes pour rendre le jeu plus visuel et interactif.</paragraph>
+ <paragraph index="48" node_type="writer">game.cpp et game.hpp : Ces fichiers contiennent la logique principale du jeu, où toutes les actions et interactions (comme les collisions, les mouvements, la gestion des scores, etc.) sont traitées.</paragraph>
+ <paragraph index="50" node_type="writer">Explication du fichier world.cpp</paragraph>
+ <paragraph index="51" node_type="writer">Le fichier world.cpp contient la logique pour gérer le monde du jeu, y compris l'initialisation, la lecture, l'écriture, et l'ajout de la nourriture. Voici une explication détaillée des principales fonctions :</paragraph>
+ <paragraph index="52" node_type="writer">void init_world(World* world, int w, int h) :
+Cette fonction initialise le monde du jeu avec des cases de type Empty. Elle crée un monde de dimensions spécifiées par les paramètres w (largeur) et h (hauteur).</paragraph>
+ <paragraph index="53" node_type="writer">void free_world(World* world) :
+Cette fonction est utilisée pour libérer les ressources allouées pour le monde du jeu. Elle détruit toutes les données liées au monde et permet de libérer la mémoire associée.</paragraph>
+ <paragraph index="54" node_type="writer">Block read(World* world, int x, int y) :
+Cette fonction permet de lire l'état de la case située aux coordonnées (x, y) dans le monde. Elle retourne le type de bloc (par exemple, vide,redfood) situé à ces coordonnées.</paragraph>
+ <paragraph index="55" node_type="writer">void write(World* world, int x, int y, Block b) :
+Cette fonction permet d'écrire un nouveau bloc dans le monde, à la position (x, y). Le bloc peut être de différents types, comme un vide,une nourriture.</paragraph>
+ <paragraph index="56" node_type="writer">void add_food(World* world, int x, int y, Block type) :
+Cette fonction permet d'ajouter de la nourriture dans le monde à une position (x, y), avec un type spécifique (par exemple, nourriture verte, rouge, bleue ou étoilée). Elle utilise la fonction write pour insérer la nourriture dans le monde à l'endroit spécifié.</paragraph>
+ <paragraph index="57" node_type="writer">void init_food(World* world, int number_food) :
+Cette fonction gère l'ajout de 4 types différents de nourriture (avec des couleurs distinctes) à des positions aléatoires dans le monde. Elle appelle la fonction read pour vérifier si une case est vide avant d'y placer de la nourriture, et utilise add_food pour insérer la nourriture dans le monde.</paragraph>
+ <paragraph index="58" node_type="writer">Ces fonctions sont essentielles pour la gestion de l'environnement de jeu, assurant que le monde soit correctement initialisé, que les éléments (comme la nourriture) soient ajoutés à des positions aléatoires, et que le serpent puisse interagir avec ces éléments.</paragraph>
+ <paragraph index="59" node_type="writer">Explication du fichier snake.cpp</paragraph>
+ <paragraph index="60" node_type="writer">Le fichier snake.cpp contient la logique principale liée au serpent : son initialisation, son mouvement, et la gestion des anneaux qui forment son corps. Voici une explication détaillée des fonctions principales :</paragraph>
+ <paragraph index="61" node_type="writer">void init_snake(Snake* snake, int x, int y, Direction dir_initiale) :
+Cette fonction initialise le serpent au début du jeu. Elle place la tête du serpent aux coordonnées (x, y) au milieu et lui assigne une direction initiale (comme North, South, East, ou West). Cette fonction sert à démarrer le jeu avec un serpent de taille minimale (un seul anneau, la tête).</paragraph>
+ <paragraph index="62" node_type="writer">void move_anneau(Snake* snake, World *world) :
+Cette fonction déplace le serpent sur la grille en déplaçant chaque anneau. L'idée est que chaque anneau du corps du serpent prend la place de l'anneau précédent :</paragraph>
+ <paragraph index="63" node_type="writer">Le premier anneau (le plus proche de la tête) prend la place de la tête.</paragraph>
+ <paragraph index="64" node_type="writer">Le deuxième anneau prend la place du premier, et ainsi de suite.</paragraph>
+ <paragraph index="65" node_type="writer">Cela permet de simuler un mouvement fluide du serpent où chaque segment suit le précédent</paragraph>
+ <paragraph index="66" node_type="writer">Explication du fichier enum.hpp</paragraph>
+ <paragraph index="67" node_type="writer">Le fichier enum.hpp contient des énumérations qui définissent les différentes directions que peut prendre le serpent, ainsi que les types de blocs qui peuvent apparaître dans le monde (comme les nourritures).</paragraph>
+ <paragraph index="68" node_type="writer">enum Direction { North, South, East, West } :
+Cette énumération définit les différentes directions que peut prendre le serpent. Les valeurs possibles sont :</paragraph>
+ <paragraph index="69" node_type="writer">North (Nord) : La tête du serpent se déplace vers le haut.</paragraph>
+ <paragraph index="70" node_type="writer">South (Sud) : La tête du serpent se déplace vers le bas.</paragraph>
+ <paragraph index="71" node_type="writer">East (Est) : La tête du serpent se déplace vers la droite.</paragraph>
+ <paragraph index="72" node_type="writer">West (Ouest) : La tête du serpent se déplace vers la gauche.</paragraph>
+ <paragraph index="73" node_type="writer">enum Block { Empty, RedFood, GreenFood, BlueFood, StarFood } :
+Cette énumération définit les différents types de blocs qui peuvent se trouver dans le monde du jeu :</paragraph>
+ <paragraph index="74" node_type="writer">Empty : Un espace vide.</paragraph>
+ <paragraph index="75" node_type="writer">RedFood : Nourriture rouge.</paragraph>
+ <paragraph index="76" node_type="writer">GreenFood : Nourriture verte.</paragraph>
+ <paragraph index="77" node_type="writer">BlueFood : Nourriture bleue.</paragraph>
+ <paragraph index="78" node_type="writer">StarFood : Nourriture étoilée (peut-être une nourriture spéciale ou donnant un bonus).</paragraph>
+ <paragraph index="79" node_type="writer">Explication du fichier gestionevent.cpp</paragraph>
+ <paragraph index="80" node_type="writer">La fonction principale de ce fichier est :</paragraph>
+ <paragraph index="81" node_type="writer">bool handle_event(Game *game, string filename) ;</paragraph>
+ <paragraph index="82" node_type="writer">Rôle de la fonction handle_event :</paragraph>
+ <paragraph index="83" node_type="writer">Cette fonction gère les événements clavier pendant le jeu, c’est-à-dire les actions que le joueur effectue avec le clavier. Elle permet de :</paragraph>
+ <paragraph index="84" node_type="writer">Lire les touches directionnelles pour changer la direction du serpent :</paragraph>
+ <paragraph index="85" node_type="writer">Flèche haut → aller vers le haut</paragraph>
+ <paragraph index="86" node_type="writer">Flèche bas → aller vers le bas</paragraph>
+ <paragraph index="87" node_type="writer">Flèche gauche → aller à gauche</paragraph>
+ <paragraph index="88" node_type="writer">Flèche droite → aller à droite</paragraph>
+ <paragraph index="89" node_type="writer">Gérer des touches spéciales :</paragraph>
+ <paragraph index="90" node_type="writer">Si on appuie sur q, le jeu s'arrête.</paragraph>
+ <paragraph index="91" node_type="writer">Si on appuie sur s, le jeu est sauvegardé :</paragraph>
+ <paragraph index="92" node_type="writer">La fonction appelle save_game(game, filename) pour enregistrer la partie.</paragraph>
+ <paragraph index="93" node_type="writer">Ensuite, une pause s’affiche :</paragraph>
+ <paragraph index="94" node_type="writer">&quot;Partie sauvegardée. Voulez-vous continuer ? (o/n)&quot;</paragraph>
+ <paragraph index="95" node_type="writer">Si le joueur appuie sur o, le jeu continue.</paragraph>
+ <paragraph index="96" node_type="writer">Si le joueur appuie sur n, le jeu s'arrête</paragraph>
+ <paragraph index="97" node_type="writer">Résumé :</paragraph>
+ <paragraph index="98" node_type="writer">handle_event gère les touches du clavier pour contrôler le serpent et exécuter des actions importantes (sauvegarder, quitter, changer de direction).</paragraph>
+ <paragraph index="99" node_type="writer">Elle utilise la fonction save_game (déjà définie dans game.cpp) pour faire la sauvegarde.</paragraph>
+ <paragraph index="100" node_type="writer">L'interaction avec l'utilisateur se fait via le clavier, avec des confirmations après certaines actions.</paragraph>
+ <paragraph index="101" node_type="writer">Explication du fichier view.cpp</paragraph>
+ <paragraph index="102" node_type="writer">Le fichier view.cpp contient les fonctions d'affichage du jeu : c’est ici qu’on dessine le monde, le score, la nourriture, et le serpent.</paragraph>
+ <paragraph index="103" node_type="writer">Rôle :</paragraph>
+ <paragraph index="104" node_type="writer">Cette fonction affiche le fond du jeu, le score, et les éléments du monde (nourriture).</paragraph>
+ <paragraph index="105" node_type="writer"> Étapes :</paragraph>
+ <paragraph index="106" node_type="writer">Affichage de l’image de fond (background) :</paragraph>
+ <paragraph index="107" node_type="writer">draw_texture(window, view-&gt;background, 0, 0, window-&gt;width, window→height);</paragraph>
+ <paragraph index="108" node_type="writer">0, 0 = coin supérieur gauche.</paragraph>
+ <paragraph index="109" node_type="writer">Couvre toute la fenêtre</paragraph>
+ <paragraph index="111" node_type="writer">Affichage du score :</paragraph>
+ <paragraph index="112" node_type="writer">string score_text = &quot;Score: &quot; + to_string(score);</paragraph>
+ <paragraph index="113" node_type="writer">set_color(&amp;window-&gt;background, 255, 255, 255, 255); // blanc</paragraph>
+ <paragraph index="114" node_type="writer">set_color(&amp;window-&gt;foreground, 12, 13, 45, 66); // texte</paragraph>
+ <paragraph index="115" node_type="writer">draw_text(window, score_text, 1, 1); // position haut gauche</paragraph>
+ <paragraph index="116" node_type="writer">Parcours de la grille du monde :</paragraph>
+ <paragraph index="117" node_type="writer">Utilise la fonction read() pour lire le contenu de chaque case.</paragraph>
+ <paragraph index="118" node_type="writer">Si la case contient de la nourriture (RedFood, GreenFood, etc.), affiche la texture correspondante.</paragraph>
+ <paragraph index="119" node_type="writer">void draw_snake(Window* window, Snake* snake, SnakeView* snakeview, World* world)</paragraph>
+ <paragraph index="120" node_type="writer">Rôle :</paragraph>
+ <paragraph index="121" node_type="writer">Affiche le corps du serpent (les anneaux) et sa tête, avec les bonnes textures selon la couleur et la direction.</paragraph>
+ <paragraph index="122" node_type="writer"> Étapes :</paragraph>
+ <paragraph index="123" node_type="writer">Afficher les anneaux du corps :</paragraph>
+ <paragraph index="124" node_type="writer">Parcours la liste chaînée des anneaux (Anneau* current = snake-&gt;first)</paragraph>
+ <paragraph index="125" node_type="writer">Pour chaque anneau, affiche la texture en fonction de sa couleur (val) :</paragraph>
+ <paragraph index="127" node_type="writer">2-Afficher la tête du serpent :</paragraph>
+ <paragraph index="128" node_type="writer">Selon la direction du serpent (snake-&gt;diremplacement)</paragraph>
+ <paragraph index="129" node_type="writer">Si la bouche est ouverte (snake-&gt;mouth_open == true) → afficher une texture &quot;open&quot;</paragraph>
+ <paragraph index="130" node_type="writer">Sinon, afficher la texture &quot;close&quot;</paragraph>
+ <paragraph index="132" node_type="writer">Problème rencontré :</paragraph>
+ <paragraph index="133" node_type="writer">J’ avais un bug au début car je dessinais les anneaux après la tête, donc l’image de la tête était cachée.
+ Ja i corrigé cela en affichant d’abord le corps, puis la tête à la fin.</paragraph>
+ <paragraph index="135" node_type="writer"> void init_view(Window* window, Game* game)</paragraph>
+ <paragraph index="136" node_type="writer">Cette fonction initialise l’affichage du jeu :</paragraph>
+ <paragraph index="137" node_type="writer">Elle alloue dynamiquement la structure WorldView.</paragraph>
+ <paragraph index="138" node_type="writer">Charge les textures des nourritures avec la fonction load_image(window, nomFichier) selon leur type.</paragraph>
+ <paragraph index="139" node_type="writer">. ensuite la lloue  SnakeView, qui contient :</paragraph>
+ <paragraph index="140" node_type="writer">Les textures de la tête du serpent dans toutes les directions (ouverte et fermée).</paragraph>
+ <paragraph index="141" node_type="writer">Les textures du corps du serpent pour chaque couleur.</paragraph>
+ <paragraph index="142" node_type="writer"> bool move_snake(Game* game)</paragraph>
+ <paragraph index="143" node_type="writer">C’est la fonction principale qui gère le mouvement du serpent :</paragraph>
+ <paragraph index="144" node_type="writer">Elle appelle move_anneau(game-&gt;snake, game-&gt;world) pour faire suivre les anneaux à la tête.</paragraph>
+ <paragraph index="145" node_type="writer">Ensuite, elle met à jour la position de la tête selon sa direction :</paragraph>
+ <paragraph index="146" node_type="writer">Vers le haut : on diminue y.</paragraph>
+ <paragraph index="147" node_type="writer">Vers le bas : on augmente y.</paragraph>
+ <paragraph index="148" node_type="writer">Vers la gauche : on diminue x.</paragraph>
+ <paragraph index="149" node_type="writer">Vers la droite : on augmente x.</paragraph>
+ <paragraph index="150" node_type="writer">Elle utilise write() pour dessiner la tête à sa nouvelle position.</paragraph>
+ <paragraph index="151" node_type="writer">Elle possede le passage secret en bas a gauche et le serpent sor en hau a droite </paragraph>
+ <paragraph index="152" node_type="writer">elle possede le rebondissemnt  en haut au milieu ou le serpent rebondis</paragraph>
+ <paragraph index="153" node_type="writer">Elle vérifie ensuite :</paragraph>
+ <paragraph index="154" node_type="writer">Si la tête touche un mur : le jeu s'arrête.</paragraph>
+ <paragraph index="155" node_type="writer">Si la tête touche un autre anneau (sauf le premier juste derrière) : le jeu s'arrête aussi.</paragraph>
+ <paragraph index="156" node_type="writer">Si la tête touche une nourriture : elle appelle check_and_eat_food().</paragraph>
+ <paragraph index="157" node_type="writer"> void check_and_eat_food(Game* game)</paragraph>
+ <paragraph index="158" node_type="writer">Cette fonction :</paragraph>
+ <paragraph index="159" node_type="writer">Lit la case sous la tête du serpent.</paragraph>
+ <paragraph index="160" node_type="writer">Si c’est une nourriture (ni Empty, ni une étoile) :</paragraph>
+ <paragraph index="161" node_type="writer">Le serpent ouvre la bouche.</paragraph>
+ <paragraph index="162" node_type="writer">Un nouvel anneau est ajouté :</paragraph>
+ <paragraph index="163" node_type="writer">Si le serpent est vide : l’anneau devient le premier et dernier.</paragraph>
+ <paragraph index="164" node_type="writer">Sinon : le nouvel anneau devient le premier, l’ancien premier devient le second.</paragraph>
+ <paragraph index="165" node_type="writer">Le score est augmenté de 1 + taille du serpent.</paragraph>
+ <paragraph index="166" node_type="writer">Appelle remove_middle_anneau(game) pour vérifier s’il faut supprimer un anneau central si 3 anneaux consécutifs ont la même couleur.</paragraph>
+ <paragraph index="167" node_type="writer">Si on supprime alors le score diminue de -4 </paragraph>
+ <paragraph index="168" node_type="writer">Ajoute une nouvelle nourriture à une position aléatoire libre.</paragraph>
+ <paragraph index="169" node_type="writer"> bool save_game(Game* game, string filename)</paragraph>
+ <paragraph index="170" node_type="writer">Cette fonction :</paragraph>
+ <paragraph index="171" node_type="writer">Sauvegarde la position (x, y), la direction du serpent.</paragraph>
+ <paragraph index="172" node_type="writer">Sauvegarde aussi la position de toutes les nourritures.</paragraph>
+ <paragraph index="173" node_type="writer">Elle écrit ces informations dans un fichier texte.</paragraph>
+ <paragraph index="174" node_type="writer">Elle permet à l’utilisateur de décider, via le clavier, s’il veut :</paragraph>
+ <paragraph index="175" node_type="writer">Continuer la partie(touche O)</paragraph>
+ <paragraph index="176" node_type="writer">Quitter( touche N)</paragraph>
+ <paragraph index="177" node_type="writer"> void remove_middle_anneau(Game* game)</paragraph>
+ <paragraph index="178" node_type="writer">Cette fonction :</paragraph>
+ <paragraph index="179" node_type="writer">Parcourt le serpent à partir de la tête.</paragraph>
+ <paragraph index="180" node_type="writer">Vérifie si trois anneaux consécutifs ont la même couleur.</paragraph>
+ <paragraph index="181" node_type="writer">Si oui, elle supprime l’anneau du milieu.</paragraph>
+ <paragraph index="182" node_type="writer">Elle continue la vérification jusqu’à ce qu’il n’y ait plus de telles combinaisons.</paragraph>
+</indexing>
